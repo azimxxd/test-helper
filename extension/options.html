@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Test Helper — настройки</title>
+<style>
+  body { font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         background: #14161c; color: #e7e9ee; margin: 0; padding: 32px; }
+  .card { max-width: 520px; margin: 0 auto; }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { color: #9aa2b1; font-size: 13px; margin-bottom: 24px; }
+  label { display: block; margin: 16px 0 6px; font-size: 13px; color: #c7cdd8; }
+  input, select { width: 100%; box-sizing: border-box; padding: 9px 11px; border-radius: 9px;
+    border: 1px solid #2a2e39; background: #1a1d26; color: #e7e9ee; font-size: 14px; }
+  .row { display: flex; align-items: center; gap: 9px; margin-top: 16px; }
+  .row input { width: auto; }
+  .row label { margin: 0; }
+  .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
+  button { margin-top: 24px; padding: 10px 18px; border: none; border-radius: 9px;
+    background: #2563eb; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; }
+  button:hover { background: #1d4ed8; }
+  #saved { margin-left: 12px; color: #4ade80; font-size: 13px; opacity: 0; transition: opacity .2s; }
+  #saved.on { opacity: 1; }
+  #health { margin-top: 14px; font-size: 13px; color: #9aa2b1; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Test Helper</h1>
+  <div class="sub">Alt+Q — разобрать вопрос · Alt+A — решить и выбрать вариант · Alt+S — по скриншоту · Alt+X — панель</div>
+
+  <label for="serverUrl">Адрес локального сервера</label>
+  <input id="serverUrl" type="text" placeholder="http://127.0.0.1:8787">
+  <div class="hint">Запускается командой <code>npm start</code> в папке server.</div>
+
+  <label for="token">Токен доступа</label>
+  <input id="token" type="password" placeholder="пусто, если THELPER_TOKEN не задан">
+
+  <label for="effort">Глубина раздумий</label>
+  <select id="effort">
+    <option value="low">low — быстро, простые вопросы</option>
+    <option value="medium">medium — по умолчанию</option>
+    <option value="high">high — сложные задачи</option>
+    <option value="xhigh">xhigh — очень сложные</option>
+    <option value="max">max — максимум, дольше и дороже</option>
+  </select>
+
+  <label for="lang">Язык объяснения</label>
+  <select id="lang">
+    <option value="ru">Русский</option>
+    <option value="kk">Қазақша</option>
+    <option value="en">English</option>
+    <option value="auto">Как в вопросе</option>
+  </select>
+
+  <label for="displayMode">Как показывать ответ</label>
+  <select id="displayMode">
+    <option value="panel">Панель — вопрос, ответ и разбор</option>
+    <option value="toast">Подсказка — ответ и текст варианта</option>
+    <option value="minimal">Только вариант — одна буква, компактно</option>
+  </select>
+
+  <label for="corner">Угол экрана для подсказки</label>
+  <select id="corner">
+    <option value="br">Снизу справа</option>
+    <option value="bl">Снизу слева</option>
+    <option value="tr">Сверху справа</option>
+    <option value="tl">Сверху слева</option>
+  </select>
+
+  <label for="toastSeconds">Через сколько секунд исчезает подсказка</label>
+  <input id="toastSeconds" type="number" min="1" max="30" step="1">
+  <div class="hint">Наведи мышь на подсказку — таймер остановится. В режиме
+  «Только вариант» разбор не запрашивается вовсе, ответ приходит быстрее.</div>
+
+  <div class="row">
+    <input id="autoSelect" type="checkbox">
+    <label for="autoSelect">Alt+Q тоже выбирает вариант (Alt+A выбирает всегда)</label>
+  </div>
+
+  <div class="row">
+    <input id="highlight" type="checkbox">
+    <label for="highlight">Подсвечивать правильный вариант на странице</label>
+  </div>
+  <div class="hint">По умолчанию выключено: страница остаётся нетронутой,
+  ответ виден только в углу.</div>
+
+  <div class="row">
+    <input id="sendContext" type="checkbox">
+    <label for="sendContext">Отправлять текст страницы как контекст</label>
+  </div>
+
+  <button id="save">Сохранить</button><span id="saved">сохранено</span>
+  <div id="health">Проверяю сервер…</div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>

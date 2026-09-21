@@ -1,0 +1,13 @@
+# ключи API — никогда не коммитить
+.env
+server/.env
+*.env.local
+
+# зависимости
+node_modules/
+
+# macOS
+.DS_Store
+
+# временное
+*.log
